@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,13 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  logo: string = '../assets/logo.jpg';
 
+  constructor(private router: Router) {
+  }
+
+  handleGoHome() {
+    this.router.navigate(['']);
+  }
 
 }
 

@@ -13,6 +13,6 @@ import { AppRoutingModule } from '../app-routing.module';
   providers: [],
   bootstrap: [],
 })
-export class AuthenticationModule {
+export class CoreModule {
 
 }
