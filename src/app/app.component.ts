@@ -7,9 +7,6 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  logo: string = '../assets/logo.jpg';
-
-
 }
 
 

@@ -18,5 +18,4 @@ import { AuthenticationComponent } from './authentication.component';
   bootstrap: [AuthenticationComponent],
 })
 export class AuthenticationModule {
-
 }

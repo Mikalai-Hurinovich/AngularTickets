@@ -1,0 +1,47 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 50px;
+  align-items: center;
+  transition: background 0.4s ease 0s;
+  height: 100px;
+  background: rgb(39, 39, 42);
+  box-shadow: 0 0 8px rgba(0, 0, 0, .6);
+}
+
+.logo {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.logo-left {
+  color: rgba(200, 199, 198, 0.8);
+}
+
+.logo-right {
+  color: rgb(212 7 84);
+}
+
+.nav a {
+  display: inline-block;
+  border-radius: 22px;
+  padding: 9px 30px;
+  background: rgba(255, 255, 255, 0);
+  font-size: 1em;
+  text-overflow: ellipsis;
+  text-align: center;
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: all 0.2s ease 0s;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: rgb(212 7 84) 0 0 0 2px inset;
+  color: hsla(0, 0%, 100%, .8);
+  margin-right: 10px;
+}
+
+.nav a:hover {
+  background: rgb(212, 7, 84);
+  color: #fff;
+}

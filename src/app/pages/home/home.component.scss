@@ -1,0 +1,14 @@
+:host {
+  padding: 0 50px;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.movies {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.movie {
+  margin-right: 20px;
+}

@@ -1,0 +1,10 @@
+<img [routerLink]="['/movie', movie?.id]" class="preview"
+     [src]="movie?.preview"
+     alt="movie-preview">
+<div class="inner">
+    <p class="title">{{movie?.title}}</p>
+    <p class="genre">{{movie?.genre}}</p>
+    <app-button></app-button>
+</div>
+
+
