@@ -4,12 +4,17 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HomeComponent } from './pages/home/home.component';
+import { MovieRouteActivator } from './core/services/movie-route-activator.service';
+import { MovieDetailsComponent } from './shared/movie-details/movie-details.component';
 
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+  },
+  {
+    path: 'movie/:id', component: MovieDetailsComponent, canActivate: [MovieRouteActivator],
   },
   {
     path: 'admin',

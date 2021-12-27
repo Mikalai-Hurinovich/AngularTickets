@@ -1,0 +1,28 @@
+:host {
+  padding: 0 50px;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.title {
+  color: hsla(0, 0%, 100%, .8);
+}
+
+.img {
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  border-radius: 5px;
+}
+
+.main {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.main__right {
+  font-size: 24px;
+  margin-left: 100px;
+  max-width: 600px;
+  color: hsla(0, 0%, 100%, .8);
+}

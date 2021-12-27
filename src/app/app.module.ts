@@ -15,6 +15,7 @@ import { MoviesService } from './shared/movies.service';
 import {
   NotFoundBackgroundComponent,
 } from './pages/not-found/components/not-found-background/not-found-background.component';
+import { MovieRouteActivator } from './core/services/movie-route-activator.service';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import {
     BrowserModule,
     AppRoutingModule,
   ],
-  providers: [MoviesService],
+  providers: [MoviesService, MovieRouteActivator],
   bootstrap: [AppComponent],
 })
 export class AppModule {
