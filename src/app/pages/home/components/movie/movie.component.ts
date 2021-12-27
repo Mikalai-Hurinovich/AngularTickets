@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { IMovie } from '../../home.component';
+import { IMovie } from '../../../../shared/movies.service';
+
 
 @Component({
   selector: 'app-movie',

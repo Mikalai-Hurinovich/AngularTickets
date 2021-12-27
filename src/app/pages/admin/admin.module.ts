@@ -18,5 +18,4 @@ import { AppRoutingModule } from '../../app-routing.module';
   bootstrap: [AdminComponent],
 })
 export class AdminModule {
-
 }

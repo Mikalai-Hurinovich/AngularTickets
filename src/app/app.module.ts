@@ -11,6 +11,10 @@ import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { MoviesService } from './shared/movies.service';
+import {
+  NotFoundBackgroundComponent,
+} from './pages/not-found/components/not-found-background/not-found-background.component';
 
 
 @NgModule({
@@ -19,6 +23,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     AuthenticationComponent,
     AdminComponent,
     NotFoundComponent,
+    NotFoundBackgroundComponent,
   ],
   imports: [
     HomeModule,
@@ -27,9 +32,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     BrowserModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [MoviesService],
   bootstrap: [AppComponent],
 })
 export class AppModule {
-
 }
