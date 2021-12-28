@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { IMovie, MoviesService } from '../../core/services/movies.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  movies$?: Observable<Array<IMovie>>;
 
+  constructor(public readonly moviesService: MoviesService) {
+  }
+
+  ngOnInit() {
+    this.movies$ = this.moviesService.getMovies();
+  }
 }

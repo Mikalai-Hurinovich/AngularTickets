@@ -1,1 +1,8 @@
-<h1>Home</h1>
+<h1>Movies</h1>
+<div class="movies">
+    <app-movie class="movie"
+               *ngFor="let item of movies$ | async"
+               [movie]="item"
+    ></app-movie>
+</div>
+
