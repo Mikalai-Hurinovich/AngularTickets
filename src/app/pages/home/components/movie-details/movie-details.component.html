@@ -1,8 +1,8 @@
-<h1 class="title">{{movie?.title}}</h1>
-<div class="main">
+<div class="preview">
     <img class="img" [src]="movie?.preview" alt="preview">
-    <div class="main__right">
-        <p class="description">Description: {{movie?.description}}</p>
-        <p class="genre">Genre: {{movie?.genre}}</p>
-    </div>
+</div>
+<div class="info">
+    <h2 class="title">{{movie?.title}}</h2>
+    <p class="description">Description: {{movie?.description}}</p>
+    <p class="genre">Genre: {{movie?.genre}}</p>
 </div>
