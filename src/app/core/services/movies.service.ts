@@ -8,6 +8,7 @@ export interface IMovie {
   id: number
   preview: string
   title: string
+  description: string
   genre: string
 }
 
@@ -23,10 +24,10 @@ export class MoviesService {
         map(res => res as Array<IMovie>));
   }
 
-  getMovie(movieId: number): Observable<IMovie | undefined> {
+  getMovie(movieId: number): Observable<IMovie> {
     return this.getMovies()
-      .pipe(
-        map((movies: Array<IMovie>) => movies.find(({ id }) => id === movieId)),
+      .pipe(tap(console.log),
+        map((movies: Array<IMovie>) => movies.find(({ id }) => id === movieId) as IMovie),
       );
   }
 }

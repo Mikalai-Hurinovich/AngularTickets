@@ -4,12 +4,16 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HomeComponent } from './pages/home/home.component';
+import { MovieDetailsComponent } from './pages/home/components/movie-details/movie-details.component';
 
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+  },
+  {
+    path: 'movie/:id', component: MovieDetailsComponent,
   },
   {
     path: 'admin',

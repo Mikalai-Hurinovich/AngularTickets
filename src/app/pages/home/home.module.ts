@@ -6,12 +6,14 @@ import { AppRoutingModule } from '../../app-routing.module';
 import { HomeComponent } from './home.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { SharedModule } from '../../shared/shared.module';
+import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     MovieComponent,
+    MovieDetailsComponent,
   ],
   imports: [
     BrowserModule,
