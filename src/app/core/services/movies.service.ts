@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { JSON_URL } from '../constants/constants';
 import { Observable } from 'rxjs';
 
@@ -8,6 +8,7 @@ export interface IMovie {
   id: number
   preview: string
   title: string
+  description: string
   genre: string
 }
 
@@ -19,14 +20,12 @@ export class MoviesService {
 
   getMovies(): Observable<Array<IMovie>> {
     return this.httpClient.get(JSON_URL)
-      .pipe(tap(console.log),
-        map(res => res as Array<IMovie>));
+      .pipe(map(res => res as Array<IMovie>));
   }
 
-  getMovie(movieId: number): Observable<IMovie | undefined> {
+  getMovie(movieId: number): Observable<IMovie> {
     return this.getMovies()
-      .pipe(
-        map((movies: Array<IMovie>) => movies.find(({ id }) => id === movieId)),
+      .pipe(map((movies: Array<IMovie>) => movies.find(({ id }) => id === movieId) as IMovie),
       );
   }
 }
