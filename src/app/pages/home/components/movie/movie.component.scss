@@ -2,7 +2,8 @@
   display: flex;
   flex-flow: column nowrap;
   text-align: center;
-  justify-content: space-between
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .preview {
@@ -16,18 +17,15 @@
   }
 }
 
+.title {
+  color: hsla(0, 0%, 100%, .8);
+  font-size: 18px;
+}
+
 .inner {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-}
-
-.title {
-  color: hsla(0, 0%, 100%, .8);
-  font-size: 20px;
-  max-width: 220px;
-  line-height: 1.4;
-  min-height: 55px;
 }
 
 .genre {

@@ -1,4 +1,4 @@
-.button {
+.nav a {
   display: inline-block;
   border-radius: 22px;
   padding: 9px 30px;
@@ -12,17 +12,12 @@
   transition: all 0.2s ease 0s;
   cursor: pointer;
   user-select: none;
-  box-shadow: rgb(212 7 84) 0px 0px 0px 2px inset;
+  box-shadow: rgb(212 7 84) 0 0 0 2px inset;
   color: hsla(0, 0%, 100%, .8);
   margin-right: 10px;
-
-  &:disabled {
-    cursor: not-allowed;
-  }
-
-  &:hover {
-    background: rgb(212, 7, 84);
-    color: #fff;
-  }
 }
 
+.nav a:hover {
+  background: rgb(212, 7, 84);
+  color: #fff;
+}

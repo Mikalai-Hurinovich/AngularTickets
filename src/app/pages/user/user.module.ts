@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
-
-import { AdminComponent } from './admin.component';
 import { CommonModule } from '@angular/common';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
-  declarations: [
-    AdminComponent,
-  ],
   imports: [
     CommonModule,
   ],
+  declarations: [ProfileComponent],
   providers: [],
-  bootstrap: [AdminComponent],
 })
-export class AdminModule {
+
+export class UserModule {
 }

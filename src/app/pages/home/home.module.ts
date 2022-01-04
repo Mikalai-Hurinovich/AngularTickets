@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
-
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from '../../app-routing.module';
 import { HomeComponent } from './home.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { SharedModule } from '../../shared/shared.module';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -16,15 +14,13 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
     MovieDetailsComponent,
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    CommonModule,
+    RouterModule,
     SharedModule,
   ],
   providers: [],
   bootstrap: [HomeComponent],
-  exports: [
-    HomeComponent,
-  ],
+  exports: [],
 })
 export class HomeModule {
 }

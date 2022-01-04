@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './pages/admin/admin.component';
-import { AuthenticationComponent } from './pages/authentication/authentication.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MovieDetailsComponent } from './pages/home/components/movie-details/movie-details.component';
@@ -20,8 +19,8 @@ const routes: Routes = [
     component: AdminComponent,
   },
   {
-    path: 'auth',
-    component: AuthenticationComponent,
+    path: 'user', loadChildren: () => import('./pages/authentication/authentication.module')
+      .then(module => module.AuthenticationModule),
   },
   { path: '**', component: NotFoundComponent },
 ];

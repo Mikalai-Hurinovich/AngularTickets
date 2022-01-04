@@ -4,35 +4,46 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
-import { CoreModule } from './core/core.module';
-import { HomeModule } from './pages/home/home.module';
 
 import { AppComponent } from './app.component';
-import { AuthenticationComponent } from './pages/authentication/authentication.component';
-import { AdminComponent } from './pages/admin/admin.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import {
   NotFoundBackgroundComponent,
 } from './pages/not-found/components/not-found-background/not-found-background.component';
+import { UserModule } from './pages/user/user.module';
+import { HomeModule } from './pages/home/home.module';
+import { CoreModule } from './core/core.module';
+import { AuthenticationModule } from './pages/authentication/authentication.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './core/services/auth.service';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthenticationComponent,
-    AdminComponent,
     NotFoundComponent,
     NotFoundBackgroundComponent,
   ],
   imports: [
     HomeModule,
     CoreModule,
+    UserModule,
     SharedModule,
     BrowserModule,
     AppRoutingModule,
+    AuthenticationModule,
     HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
   ],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {

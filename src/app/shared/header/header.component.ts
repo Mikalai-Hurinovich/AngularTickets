@@ -11,7 +11,7 @@ export class HeaderComponent {
   constructor(private readonly router: Router) {
   }
 
-  handleGoHome() {
+  handleGoHome(): void {
     this.router.navigate(['']);
   }
 }

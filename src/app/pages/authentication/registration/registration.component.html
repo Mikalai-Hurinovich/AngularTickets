@@ -1,0 +1,55 @@
+<h2 class="title">Registration</h2>
+<form class="form" [formGroup]="registrationForm" (ngSubmit)="handleRegisterUser()" autocomplete="off">
+    <div class="form-group"
+         [class.error]="handleValidateLogin()">
+        <label for="userName">User Name:</label>
+        <em *ngIf="handleValidateLogin()">Field
+            Required</em>
+        <input class="form-control" id="userName" formControlName="userName" placeholder="User Name..."
+               required
+               type="text">
+    </div>
+    <div class="form-group"
+         [class.error]="handleValidateEmail()">
+        <label for="userEmail">Email:</label>
+        <em *ngIf="handleValidateEmail()">Field
+            Required</em>
+
+        <input class="form-control" id="userEmail" formControlName="userEmail"
+               placeholder="Email..." required
+               type="email">
+    </div>
+    <div formGroupName="passwords">
+        <div class="form-group"
+             [class.error]="handleValidatePassword()">
+            <label for="userPassword">Password:</label>
+            <em *ngIf="handleValidatePassword()">Field
+                Required</em>
+            <em *ngIf="handleValidatePasswordMinlength()">Minlength must
+                be 6</em>
+            <input class="form-control" id="userPassword" formControlName="userPassword"
+                   placeholder="Password..." required
+                   type="password">
+        </div>
+        <div class="form-group"
+             [class.error]="handleValidateConfirmPassword()">
+            <label for="confirmPassword">Repeat password:</label>
+            <em *ngIf="handleValidateConfirmPassword()">Field
+                Required</em>
+            <em *ngIf="handleValidatePasswordsMismatch()">Mismatch</em>
+            <input class="form-control" id="confirmPassword" formControlName="confirmPassword"
+                   placeholder="Repeat you password..." required
+                   type="password">
+        </div>
+    </div>
+    <div class="link">
+        Have an account? <a [routerLink]="['/user/login']">Login!</a>
+    </div>
+    <div class="buttons">
+        <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false">
+            <app-button [text]="'Register'" type="submit" [disabled]="registrationForm.invalid"
+                        (click)="handleRegisterUser()"></app-button>
+        </span>
+        <app-button (click)="handleCancelButtonClick()" [text]="'Cancel'"></app-button>
+    </div>
+</form>
