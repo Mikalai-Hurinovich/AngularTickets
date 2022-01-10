@@ -1,21 +1,26 @@
 import { NgModule } from '@angular/core';
 
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from '../../app-routing.module';
-import { AuthenticationComponent } from './authentication.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UserRoutingModule } from '../user/user-routing.module';
+import { SharedModule } from '../../shared/shared.module';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
   declarations: [
-    AuthenticationComponent,
+    LoginComponent,
+    RegistrationComponent,
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    CommonModule,
+    UserRoutingModule,
+    SharedModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AuthenticationComponent],
+  bootstrap: [],
 })
 export class AuthenticationModule {
 }

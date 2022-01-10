@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -10,7 +11,7 @@ import { AppRoutingModule } from '../app-routing.module';
     BrowserModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [],
 })
 export class CoreModule {

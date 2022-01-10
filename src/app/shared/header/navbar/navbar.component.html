@@ -1,0 +1,7 @@
+<nav class="nav">
+    <a [routerLink]="['admin']" routerLinkActive="active">Admin</a>
+    <a [routerLink]="['']" routerLinkActive="active">General</a>
+    <a [routerLink]="['user/login']" *ngIf="!userService.isAuth()" routerLinkActive="active">Login</a>
+    <a [routerLink]="['user/profile']" *ngIf="userService.isAuth()"
+       routerLinkActive="active">Hello, {{userService.currentUser.userName}}</a>
+</nav>

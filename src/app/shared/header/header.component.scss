@@ -22,26 +22,4 @@
   color: rgb(212 7 84);
 }
 
-.nav a {
-  display: inline-block;
-  border-radius: 22px;
-  padding: 9px 30px;
-  background: rgba(255, 255, 255, 0);
-  font-size: 1em;
-  text-overflow: ellipsis;
-  text-align: center;
-  text-decoration: none;
-  overflow: hidden;
-  white-space: nowrap;
-  transition: all 0.2s ease 0s;
-  cursor: pointer;
-  user-select: none;
-  box-shadow: rgb(212 7 84) 0 0 0 2px inset;
-  color: hsla(0, 0%, 100%, .8);
-  margin-right: 10px;
-}
 
-.nav a:hover {
-  background: rgb(212, 7, 84);
-  color: #fff;
-}
