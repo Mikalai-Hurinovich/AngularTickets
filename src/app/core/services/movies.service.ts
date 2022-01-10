@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { JSON_URL } from '../constants/constants';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable, of } from 'rxjs';
+import { MOVIES_DATA } from '../../../assets/data/data';
+
 
 export interface IMovie {
   id: number
@@ -14,18 +14,22 @@ export interface IMovie {
 
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
-
-  constructor(private readonly httpClient: HttpClient) {
-  }
-
   getMovies(): Observable<Array<IMovie>> {
-    return this.httpClient.get(JSON_URL)
-      .pipe(map(res => res as Array<IMovie>));
+    return of(MOVIES_DATA);
   }
 
   getMovie(movieId: number): Observable<IMovie> {
     return this.getMovies()
       .pipe(map((movies: Array<IMovie>) => movies.find(({ id }) => id === movieId) as IMovie),
       );
+  }
+
+  addMovie(movie: IMovie): Observable<Observable<never>> {
+    return this.getMovies()
+      .pipe(map((movies) => {
+        movies.push(movie);
+        return EMPTY;
+      },
+      ));
   }
 }

@@ -1,1 +1,23 @@
-<h2 class="heading">Admin</h2>
+<h2 class="heading">Movies</h2>
+<div class="movies">
+    <table class="table">
+        <tr>
+            <th *ngFor="let column of headers">
+                {{column}}
+            </th>
+        </tr>
+        <tr *ngFor="let movie of movies$ | async">
+            <td>{{movie.id}}</td>
+            <img class="img" src="{{movie.preview}}"/>
+            <td>{{movie.title}}</td>
+            <td class="description">{{movie.description}}</td>
+            <td>{{movie.genre}}</td>
+        </tr>
+    </table>
+
+</div>
+<app-button (click)="handleAddMovie()">Add movie +</app-button>
+<h2 class="heading">Cinemas</h2>
+<app-button>Add cinema +</app-button>
+<h2 class="heading">Extra</h2>
+<app-button>Add extra +</app-button>

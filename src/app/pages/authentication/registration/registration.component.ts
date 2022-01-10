@@ -33,7 +33,8 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   private userEmail: FormControl;
 
-  constructor(private readonly fb: FormBuilder, private readonly toastr: ToastrService, private readonly userService: AuthService, private readonly router: Router) {
+  constructor(private readonly fb: FormBuilder, private readonly toastr: ToastrService,
+    private readonly authService: AuthService, private readonly router: Router) {
   }
 
   ngOnInit(): void {
@@ -85,7 +86,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   handleValidatePasswordsMismatch(): boolean | undefined {
     return this.registrationForm.hasError('notSame', 'passwords') && this.registrationForm.controls['passwords'].get('confirmPassword')?.dirty
-            && !this.handleValidateConfirmPassword();
+        && !this.handleValidateConfirmPassword();
   }
 
   handleValidatePasswordMinlength(): AbstractControl {
@@ -99,9 +100,10 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       userName: formValue.userName,
       userPassword: this.registrationForm.get('passwords')?.get('userPassword')?.value,
       userEmail: formValue.userEmail,
+      isAdmin: false,
     };
 
-    this.subscription = this.userService.addUser(data).subscribe({
+    this.subscription = this.authService.addUser(data).subscribe({
       next: () => {
         this.toastr.success('User was successfully added');
         this.router.navigate(['user', 'login']);

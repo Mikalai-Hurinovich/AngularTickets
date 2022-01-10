@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './pages/admin/admin.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MovieDetailsComponent } from './pages/home/components/movie-details/movie-details.component';
+import { AdminGuard } from './core/guards/admin.guard';
 
 
 const routes: Routes = [
@@ -16,7 +16,8 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminComponent,
+    loadChildren: () => import('./pages/admin/admin.module').then(module => module.AdminModule),
+    canActivate: [AdminGuard],
   },
   {
     path: 'user', loadChildren: () => import('./pages/authentication/authentication.module')
