@@ -36,10 +36,19 @@ export class AuthService {
       );
   }
 
-  addUser(user: IUser): Observable<Observable<never>> {
+  createUser(user: IUser): Observable<Observable<never>> {
     return this.getUsers()
       .pipe(map((users) => {
         users.push(user);
+        return EMPTY;
+      },
+      ));
+  }
+
+  createAdmin(user: IUser): Observable<Observable<never>> {
+    return this.getUsers()
+      .pipe(map((users) => {
+        users.push({ ...user, isAdmin: true });
         return EMPTY;
       },
       ));

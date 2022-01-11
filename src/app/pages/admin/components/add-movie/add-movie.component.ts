@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { IMovie, MoviesService } from '../../../../core/services/movies.service';
@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-add-movie',
   templateUrl: './add-movie.component.html',
   styleUrls: ['./add-movie.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddMovieComponent implements OnInit, OnDestroy {
   movieForm: FormGroup;
@@ -17,29 +18,20 @@ export class AddMovieComponent implements OnInit, OnDestroy {
 
   mouseoverLogin: boolean;
 
-  private preview: FormControl;
-
-  private title: FormControl;
-
-  private description: FormControl;
-
-  private genre: FormControl;
-
-  constructor(private readonly fb: FormBuilder, private readonly toastr: ToastrService,
-    private readonly movieService: MoviesService, private readonly router: Router) {
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly toastr: ToastrService,
+    private readonly movieService: MoviesService,
+    private readonly router: Router,
+    private readonly cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
-    this.preview = new FormControl('', [Validators.required]);
-    this.title = new FormControl('', [Validators.required]);
-    this.description = new FormControl('', [Validators.required]);
-    this.genre = new FormControl('', [Validators.required]);
-
     this.movieForm = this.fb.group({
-      preview: this.preview,
-      title: this.title,
-      description: this.description,
-      genre: this.genre,
+      preview: new FormControl('', [Validators.required]),
+      title: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      genre: new FormControl('', [Validators.required]),
     });
   }
 
@@ -68,6 +60,7 @@ export class AddMovieComponent implements OnInit, OnDestroy {
       },
       error: () => {
         this.toastr.error('Something went wrong');
+        this.cdr.markForCheck();
       },
     });
   }
