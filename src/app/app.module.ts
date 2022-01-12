@@ -19,6 +19,7 @@ import { AuthService } from './core/services/auth.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './pages/admin/admin.module';
+import { AccordionModule } from './shared/accordion/accordion.module';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { AdminModule } from './pages/admin/admin.module';
     SharedModule,
     BrowserModule,
     AdminModule,
+    AccordionModule,
     AppRoutingModule,
     AuthenticationModule,
     HttpClientModule,

@@ -2,7 +2,7 @@
 <div class="movies">
     <table class="table">
         <tr>
-            <th *ngFor="let column of headers">
+            <th *ngFor="let column of movieHeaders">
                 {{column}}
             </th>
         </tr>
@@ -14,10 +14,26 @@
             <td>{{movie.genre}}</td>
         </tr>
     </table>
-
 </div>
 <app-button (click)="handleAddMovie()">Add movie +</app-button>
+
 <h2 class="heading">Cinemas</h2>
-<app-button>Add cinema +</app-button>
+<div class="cinemas">
+    <table class="table">
+        <tr>
+            <th *ngFor="let column of cinemaHeaders">
+                {{column}}
+            </th>
+        </tr>
+        <tr *ngFor="let cinema of cinemas$ | async">
+            <td>{{cinema.id}}</td>
+            <img class="img" src="{{cinema.preview}}"/>
+            <td>{{cinema.title}}</td>
+            <td class="description">{{cinema.description}}</td>
+            <td>{{cinema.address}}</td>
+        </tr>
+    </table>
+</div>
+<app-button (click)="handleAddCinema()">Add cinema +</app-button>
 <h2 class="heading">Extra</h2>
 <app-button>Add extra +</app-button>

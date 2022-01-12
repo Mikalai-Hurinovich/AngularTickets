@@ -5,20 +5,24 @@ import { SharedModule } from '../../shared/shared.module';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { CinemasComponent } from './components/cinemas/cinemas.component';
+import { CinemaComponent } from './components/cinema/cinema.component';
+import { CinemaDetailsComponent } from './components/cinema-details/cinema-details.component';
+import { AccordionModule } from '../../shared/accordion/accordion.module';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     MovieComponent,
-    CinemasComponent,
+    CinemaComponent,
     MovieDetailsComponent,
+    CinemaDetailsComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     SharedModule,
+    AccordionModule,
   ],
   providers: [],
   bootstrap: [HomeComponent],

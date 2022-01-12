@@ -5,4 +5,11 @@
                [movie]="item"
     ></app-movie>
 </div>
+<h2 class="heading">Cinemas</h2>
+<div class="cinemas">
+    <app-cinema class="cinema"
+                *ngFor="let cinema of cinemas$ | async"
+                [cinema]="cinema"
+    ></app-cinema>
+</div>
 

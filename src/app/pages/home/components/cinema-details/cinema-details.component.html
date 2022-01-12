@@ -1,0 +1,40 @@
+<div class="wrapper">
+    <div class="main">
+        <div class="info">
+            <h2 class="title">{{cinema?.title}}</h2>
+            <p class="address">{{cinema?.address}}</p>
+        </div>
+        <div class="buttons">
+            <app-button>Buy ticket</app-button>
+            <app-button (click)="handleCancelClick()">Cancel</app-button>
+        </div>
+    </div>
+    <div class="preview"
+         [ngStyle]="{'background-image': 'url(' + cinema?.preview + ')'}">
+    </div>
+</div>
+<div class="sessions">
+    <h2 class="heading">Sessions</h2>
+    <app-accordion class="accordion" [collapsing]="!collapsing">
+        <accordion-item title="Today: {{handleDate('today') | date: 'd MMM, EEEE'}}">
+            <ng-template appAccordionContent>
+                <div class="session">
+                    <span>Film</span>
+                    <span>13:00</span>
+                </div>
+            </ng-template>
+        </accordion-item>
+    </app-accordion>
+
+    <app-accordion [collapsing]="!collapsing">
+        <accordion-item title="Tomorrow: {{handleDate('tomorrow') | date: 'd MMM, EEEE'}}">
+            <ng-template appAccordionContent>
+                <div class="session">
+                    <span>Film</span>
+                    <span>13:00</span>
+                </div>
+            </ng-template>
+        </accordion-item>
+    </app-accordion>
+
+</div>

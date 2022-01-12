@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { EMPTY, Observable, of } from 'rxjs';
-import { MOVIES_DATA } from '../../../assets/data/data';
+import { MOVIES_DATA } from '../../../assets/data/movies';
 
 
 export interface IMovie {
