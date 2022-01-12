@@ -4,11 +4,11 @@
   flex-flow: column nowrap;
 }
 
-.movies {
+.movies, .cinemas {
   display: flex;
   flex-flow: row wrap;
 }
 
-.movie {
-  margin-right: 20px;
+.movie, .cinema {
+  margin-right: 40px;
 }

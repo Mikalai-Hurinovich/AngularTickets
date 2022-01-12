@@ -4,6 +4,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MovieDetailsComponent } from './pages/home/components/movie-details/movie-details.component';
 import { AdminGuard } from './core/guards/admin.guard';
+import { CinemaDetailsComponent } from './pages/home/components/cinema-details/cinema-details.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,9 @@ const routes: Routes = [
   },
   {
     path: 'movie/:id', component: MovieDetailsComponent,
+  },
+  {
+    path: 'cinema/:id', component: CinemaDetailsComponent,
   },
   {
     path: 'admin',

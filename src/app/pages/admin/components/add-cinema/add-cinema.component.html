@@ -1,0 +1,46 @@
+<h2 class="title">Add Cinema</h2>
+<form class="form" [formGroup]="cinemaForm" (ngSubmit)="handleAddCinema()">
+    <div class="form-group"
+         [class.error]="handleValidateFormControl(cinemaForm.controls['title'])">
+        <label for="title">Title:</label>
+        <em *ngIf="handleValidateFormControl(cinemaForm.controls['title'])">Field
+            Required</em>
+        <input class="form-control" id="title" formControlName="title" placeholder="Title..."
+               required
+               type="text">
+    </div>
+    <div class="form-group"
+         [class.error]="handleValidateFormControl(cinemaForm.controls['description'])">
+        <label for="description">Description:</label>
+        <em *ngIf="handleValidateFormControl(cinemaForm.controls['description'])">Field
+            Required</em>
+
+        <textarea class="form-control" id="description" formControlName="description"
+                  placeholder="Description..." required
+                  type="email">
+        </textarea>
+    </div>
+    <div class="form-group"
+         [class.error]="handleValidateFormControl(cinemaForm.controls['address'])">
+        <label for="address">Address:</label>
+        <em *ngIf="handleValidateFormControl(cinemaForm.controls['address'])">Field
+            Required</em>
+        <input class="form-control" id="address" formControlName="address" placeholder="Address..."
+               required
+               type="text">
+    </div>
+    <div class="form-group" [class.error]="handleValidateFormControl(cinemaForm.controls['preview'])">
+        <label for="preview">Preview:</label>
+        <em *ngIf="handleValidateFormControl(cinemaForm.controls['preview'])">Field
+            Required</em>
+        <input id="preview" formControlName="preview" type="text"
+               class="form-control" placeholder="Url of image..."/>
+    </div>
+    <div class="buttons">
+        <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false">
+            <app-button type="submit" [disabled]="cinemaForm.invalid"
+                        (click)="handleAddCinema()">Add Cinema</app-button>
+        </span>
+        <app-button (click)="handleCancelButtonClick()">Cancel</app-button>
+    </div>
+</form>

@@ -1,0 +1,11 @@
+@import 'src/app/core/utils/utils';
+
+@include form-group-styles;
+@include form-group-error;
+@include form-control-styles;
+
+:host {
+  padding: 0 50px;
+  display: flex;
+  flex-flow: column nowrap;
+}

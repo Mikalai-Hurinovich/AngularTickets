@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './header/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { AccordionModule } from './accordion/accordion.module';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
+    AccordionModule,
   ],
   providers: [],
   bootstrap: [],

@@ -4,7 +4,7 @@
   flex-flow: column nowrap;
 }
 
-.movies {
+.movies, .cinemas {
   display: flex;
   flex-flow: row wrap;
 }

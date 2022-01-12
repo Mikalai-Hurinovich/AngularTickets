@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+  justify-content: flex-start;
+
+  margin-bottom: 20px;
+}
+
+.preview {
+  width: 400px;
+  height: 320px;
+  border-radius: 10px;
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.title {
+  color: hsla(0, 0%, 100%, .8);
+  font-size: 22px;
+  max-width: 400px;
+}
