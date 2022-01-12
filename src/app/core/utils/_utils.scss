@@ -17,7 +17,7 @@
 
 @mixin form-group-error {
   .error {
-    & input {
+    & input, textarea {
       background-color: #ec475c;
     }
 
@@ -50,6 +50,11 @@
 
   label, .title {
     color: hsla(0, 0%, 100%, .8);
+  }
+
+  textarea {
+    min-height: 80px;
+    padding: 5px 10px;
   }
 
   .form-control {

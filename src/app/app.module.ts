@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './core/services/auth.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminModule } from './pages/admin/admin.module';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
     UserModule,
     SharedModule,
     BrowserModule,
+    AdminModule,
     AppRoutingModule,
     AuthenticationModule,
     HttpClientModule,

@@ -1,5 +1,50 @@
 :host {
   padding: 0 50px;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
+}
+
+.movies {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.movie {
+  margin-right: 20px;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+  color: rgba(243, 238, 238, 0.8);
+
+  & tr, td {
+    border: 1px solid #d40754;
+    padding: 8px;
+  }
+
+  & tr .img {
+    margin: 10px;
+  }
+
+  & tr:nth-child(even) {
+    background-color: #4d4a4a;
+  }
+
+  & tr:not(:first-child):hover {
+    background-color: #545454;
+    cursor: pointer;
+  }
+
+  & th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.img {
+  width: 50px;
 }

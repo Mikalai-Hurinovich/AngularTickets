@@ -47,9 +47,9 @@
     </div>
     <div class="buttons">
         <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false">
-            <app-button [text]="'Register'" type="submit" [disabled]="registrationForm.invalid"
-                        (click)="handleRegisterUser()"></app-button>
+            <app-button type="submit" [disabled]="registrationForm.invalid"
+                        (click)="handleRegisterUser()">Register</app-button>
         </span>
-        <app-button (click)="handleCancelButtonClick()" [text]="'Cancel'"></app-button>
+        <app-button (click)="handleCancelButtonClick()">Cancel</app-button>
     </div>
 </form>

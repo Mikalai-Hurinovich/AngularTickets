@@ -23,8 +23,8 @@
     </div>
     <div class="buttons">
         <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false">
-            <app-button [text]="'Login'" type="submit" [disabled]="this.loginForm.invalid"></app-button>
+            <app-button type="submit" [disabled]="this.loginForm.invalid">Login</app-button>
         </span>
-        <app-button (click)="handleCancelButtonClick()" [text]="'Cancel'"></app-button>
+        <app-button (click)="handleCancelButtonClick()">Cancel</app-button>
     </div>
 </form>

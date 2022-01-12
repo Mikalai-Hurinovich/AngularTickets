@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -17,6 +17,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegistrationComponent implements OnInit, OnDestroy {
   registrationForm: FormGroup;
@@ -33,7 +34,12 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   private userEmail: FormControl;
 
-  constructor(private readonly fb: FormBuilder, private readonly toastr: ToastrService, private readonly userService: AuthService, private readonly router: Router) {
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly toastr: ToastrService,
+    private readonly authService: AuthService,
+    private readonly router: Router,
+    private readonly cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -61,7 +67,6 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     let confirmPass = this.confirmPassword.value;
     return pass === confirmPass ? null : { notSame: true };
   };
-
 
   handleValidateEmail(): boolean {
     return (this.userEmail.touched || this.mouseoverLogin) && this.userEmail.invalid;
@@ -101,13 +106,14 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       userEmail: formValue.userEmail,
     };
 
-    this.subscription = this.userService.addUser(data).subscribe({
+    this.subscription = this.authService.createUser(data).subscribe({
       next: () => {
         this.toastr.success('User was successfully added');
         this.router.navigate(['user', 'login']);
       },
       error: () => {
         this.toastr.error('Something went wrong');
+        this.cdr.markForCheck();
       },
     });
   }

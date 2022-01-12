@@ -5,12 +5,14 @@ import { SharedModule } from '../../shared/shared.module';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { CinemasComponent } from './components/cinemas/cinemas.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     MovieComponent,
+    CinemasComponent,
     MovieDetailsComponent,
   ],
   imports: [

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
@@ -21,8 +22,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private userPassword: FormControl;
 
-  constructor(private readonly toastr: ToastrService,
-    private readonly userService: AuthService, private readonly router: Router) {
+  constructor(
+    private readonly toastr: ToastrService,
+    private readonly userService: AuthService,
+    private readonly router: Router,
+    private readonly cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -51,6 +55,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         },
         error: (error) => {
           this.toastr.error(error);
+          this.cdr.markForCheck();
         },
       });
     }
