@@ -53,4 +53,30 @@
   font-size: 40px;
   color: hsla(0, 0%, 100%, .8);
   padding: 0 50px;
+  margin-top: 20px;
+}
+
+.session {
+
+  margin-bottom: 20px;
+}
+
+.session-date {
+  border: 1px solid #ec475c;
+  background-color: #663d43;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.session-title {
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.session-start {
+  border: 1px solid #ec475c;
+  padding: 5px;
+  margin-right: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }

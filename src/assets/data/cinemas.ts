@@ -1,17 +1,22 @@
-export const CINEMAS_DATA = [
+import { ICinema } from '../../app/pages/home/components/cinema/cinema.model';
+
+
+export const CINEMAS_DATA: ICinema[] = [
   {
     id: 1,
-    preview: 'https://content.onliner.by/news/1100x5616/db58626e064fa007bef9d007b0b9147a.jpeg',
+    preview: 'https://сутки.бел/image/catalog/putevoditel/1_3_3efec5903e283ac5d2f1d7a554ab2882.jpg',
+    title: 'Cinema October',
     description: '',
     address: 'Minsk, prasp. Niezaliežnasci 73',
-    title: 'Cinema October',
+    halls: 1,
   },
   {
     id: 2,
-    preview: 'https://content.onliner.by/news/1100x5616/e8ba6cefe50bc2f349204fc042e054bd.jpeg',
+    preview: 'https://www.vegas.by/upload/medialibrary/e2e/e2e3f5c25928ac406104d68c1b6f511d.jpg',
     description: '',
     address: 'Minsk, vulica Piatra Mscislaŭca 11, 3 floor',
     title: '"VOKA CINEMA by Silver Screen"',
+    halls: 1,
   },
   {
     id: 3,
@@ -19,5 +24,6 @@ export const CINEMAS_DATA = [
     description: '',
     address: 'Minsk, vulica Ramanaŭskaja Slabada 28',
     title: 'Cinema Belarus',
+    halls: 1,
   },
 ];

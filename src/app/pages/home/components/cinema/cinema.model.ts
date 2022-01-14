@@ -4,4 +4,5 @@ export interface ICinema {
   title: string;
   description: string;
   address: string;
+  halls: number;
 }

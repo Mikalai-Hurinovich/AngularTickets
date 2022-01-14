@@ -5,6 +5,7 @@ import { AccordionHeaderDirective } from './accordion-header.directive';
 
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: 'accordion-item',
 })
 export class AccordionItemDirective<T> {

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { EMPTY, Observable, of } from 'rxjs';
 import { MOVIES_DATA } from '../../../assets/data/movies';
+import { getEntityById } from '../../helpers/getEntityById';
 
 
 export interface IMovie {
@@ -19,9 +20,7 @@ export class MoviesService {
   }
 
   getMovie(movieId: number): Observable<IMovie> {
-    return this.getMovies()
-      .pipe(map((movies: Array<IMovie>) => movies.find(({ id }) => id === movieId) as IMovie),
-      );
+    return getEntityById(this.getMovies, movieId);
   }
 
   addMovie(movie: IMovie): Observable<Observable<never>> {

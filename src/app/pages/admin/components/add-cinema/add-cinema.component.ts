@@ -52,6 +52,7 @@ export class AddCinemaComponent implements OnInit, OnDestroy {
       preview: formValue.preview,
       address: formValue.address,
       description: formValue.description,
+      halls: 1,
     };
 
     this.subscription = this.cinemaService.addCinema(data).subscribe({

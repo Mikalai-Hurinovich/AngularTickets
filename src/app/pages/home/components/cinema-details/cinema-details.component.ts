@@ -1,8 +1,12 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ICinema } from '../cinema/cinema.model';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { CinemaService } from '../../../../core/services/cinema.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SessionService } from '../../../../core/services/session.service';
+import { IGroupedSessions } from '../../../../models/sessions';
+import { groupCinemaSessionsByDate } from '../../../../helpers/group-cinema-sessions-by-date';
+import { MoviesService } from '../../../../core/services/movies.service';
 
 @Component({
   selector: 'app-cinema-details',
@@ -11,45 +15,47 @@ import { ActivatedRoute, Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CinemaDetailsComponent implements OnInit, OnDestroy {
-  cinema?: ICinema;
+  private readonly destroy$: Subject<void> = new Subject();
+
+  cinema: ICinema;
+
+  groupedSessionsByDate: IGroupedSessions[];
 
   collapsing = true;
-
-  cinemaSub: Subscription;
 
   constructor(
     private readonly cinemaService: CinemaService,
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
+    private readonly sessionService: SessionService,
+    private readonly movieService: MoviesService,
     private readonly cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
-    this.cinemaSub = this.cinemaService.getCinema(+this.activatedRoute.snapshot.params['id']).subscribe(
-      (cinema: ICinema) => {
-        this.cinema = cinema;
+    this.cinemaService.getCinema(+this.activatedRoute.snapshot.params['id'])
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (cinema: ICinema) => {
+          this.cinema = cinema;
+          this.cdr.markForCheck();
+        },
+      );
+
+    this.sessionService.getSessionsById(this.cinema.id, 'cinema')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data) => {
+        this.groupedSessionsByDate = groupCinemaSessionsByDate(data);
         this.cdr.markForCheck();
-      },
-    );
+      });
   }
 
-  ngOnDestroy(): void {
-    this.cinemaSub?.unsubscribe();
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   handleCancelClick(): void {
     this.router.navigate(['']);
-  }
-
-  handleDate(time: string): Date {
-    let date = new Date();
-    switch (time) {
-      case 'today':
-        return date;
-      case 'tomorrow':
-        return new Date(date.setDate(date.getDate() + 1));
-      default:
-        return date;
-    }
   }
 }
