@@ -14,27 +14,18 @@
     </div>
 </div>
 <div class="sessions">
-    <h2 class="heading">Sessions</h2>
     <app-accordion class="accordion" [collapsing]="!collapsing">
-        <accordion-item title="Today: {{handleDate('today') | date: 'd MMM, EEEE'}}">
+        <accordion-item title="Sessions">
             <ng-template appAccordionContent>
-                <div class="session">
-                    <span>Film</span>
-                    <span>13:00</span>
+                <div class="session" *ngFor="let group of groupedSessionsByDate">
+                    <div class="session-date">{{group.date | date}}</div>
+                    <span *ngFor="let session of group.sessions; index as i;">
+                        <span [routerLink]="['/movie', session.movie.id]" class="session-title"
+                              *ngIf="i < 1">{{session.movie?.title}} | </span>
+                        <span class="session-start">{{session?.startsAt | date: "HH:mm"}}</span>
+                    </span>
                 </div>
             </ng-template>
         </accordion-item>
     </app-accordion>
-
-    <app-accordion [collapsing]="!collapsing">
-        <accordion-item title="Tomorrow: {{handleDate('tomorrow') | date: 'd MMM, EEEE'}}">
-            <ng-template appAccordionContent>
-                <div class="session">
-                    <span>Film</span>
-                    <span>13:00</span>
-                </div>
-            </ng-template>
-        </accordion-item>
-    </app-accordion>
-
 </div>

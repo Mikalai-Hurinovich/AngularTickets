@@ -3,6 +3,7 @@ import { EMPTY, Observable, of } from 'rxjs';
 import { ICinema } from '../../pages/home/components/cinema/cinema.model';
 import { CINEMAS_DATA } from '../../../assets/data/cinemas';
 import { map } from 'rxjs/operators';
+import { getEntityById } from '../../helpers/getEntityById';
 
 @Injectable({ providedIn: 'root' })
 export class CinemaService {
@@ -12,8 +13,7 @@ export class CinemaService {
   }
 
   getCinema(cinemaId: number): Observable<ICinema> {
-    return this.getCinemas()
-      .pipe(map((cinemas: ICinema[]) => cinemas.find(({ id }) => id === cinemaId) as ICinema));
+    return getEntityById(this.getCinemas, cinemaId);
   }
 
   addCinema(cinema: ICinema): Observable<Observable<never>> {

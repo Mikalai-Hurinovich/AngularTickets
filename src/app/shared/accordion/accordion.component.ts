@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ContentChildren, Input, QueryList } from '@angular/core';
 import { AccordionItemDirective } from './directives/accordion-item.directive';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { state, style, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-accordion',
@@ -9,10 +9,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('contentExpansion', [
-      state('expanded', style({ height: '*', opacity: 1, visibility: 'visible' })),
-      state('collapsed', style({ height: '0px', opacity: 0, visibility: 'hidden' })),
-      transition('expanded <=> collapsed',
-        animate('2000ms cubic-bezier(.37,1.04,.68,.98)')),
+      state('expanded', style({ height: '*', opacity: 1, visibility: 'visible', transition: 'all .3s' })),
+      state('collapsed', style({ height: '0', opacity: 0, visibility: 'hidden', transition: 'all .3s' })),
     ]),
   ],
 })

@@ -1,8 +1,26 @@
-<div class="preview">
-    <img class="img" [src]="movie?.preview" alt="preview">
+<div class="movie">
+    <div class="preview">
+        <img class="img" [src]="movie?.preview" alt="preview">
+    </div>
+    <div class="info">
+        <h2 class="title">{{movie?.title}}</h2>
+        <p class="description">Description: {{movie?.description}}</p>
+        <p class="genre">Genre: {{movie?.genre}}</p>
+    </div>
 </div>
-<div class="info">
-    <h2 class="title">{{movie?.title}}</h2>
-    <p class="description">Description: {{movie?.description}}</p>
-    <p class="genre">Genre: {{movie?.genre}}</p>
+<div class="sessions">
+    <app-accordion class="accordion" [collapsing]="!collapsing">
+        <accordion-item title="Sessions">
+            <ng-template appAccordionContent>
+                <div class="session" *ngFor="let group of groupCinemaSessionsByDate">
+                    <div class="session-date">{{group.date | date}}</div>
+                    <span *ngFor="let session of group.sessions; index as i">
+                        <span [routerLink]="['/cinema', session.cinema.id]" class="session-title"
+                              *ngIf="i < 1">{{session.cinema?.title}}</span>
+                        <span class="session-start">{{session?.startsAt | date: "HH:mm"}}</span>
+                    </span>
+                </div>
+            </ng-template>
+        </accordion-item>
+    </app-accordion>
 </div>

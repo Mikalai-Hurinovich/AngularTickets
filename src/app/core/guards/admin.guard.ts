@@ -12,7 +12,9 @@ export class AdminGuard implements CanActivate {
   }
 
   canActivate(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     route: ActivatedRouteSnapshot,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (this.authService.currentUser?.isAdmin) {
       return true;

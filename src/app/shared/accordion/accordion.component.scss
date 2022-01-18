@@ -12,10 +12,6 @@
   margin-bottom: 20px;
 }
 
-.accordion__content {
-  padding: 0 20px;
-}
-
 .accordion__item:first-child .accordion__header {
   border-radius: var(--accordion-border-radius) var(--accordion-border-radius) 0 0;
 }

@@ -1,6 +1,12 @@
 :host {
   padding: 0 50px;
   display: flex;
+  flex-flow: column nowrap;
+  margin-top: 50px;
+}
+
+.movie {
+  display: flex;
   flex-flow: row nowrap;
   margin-top: 50px;
 }
@@ -26,4 +32,35 @@
   margin-left: 100px;
   max-width: 600px;
   color: hsla(0, 0%, 100%, .8);
+}
+
+.sessions {
+  font-size: 40px;
+  color: hsla(0, 0%, 100%, .8);
+  margin-top: 20px;
+}
+
+.session {
+  margin-bottom: 20px;
+}
+
+.session-date {
+  border: 1px solid #ec475c;
+  background-color: #663d43;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.session-title {
+  cursor: pointer;
+  margin-right: 20px;
+  padding: 0 10px;
+}
+
+.session-start {
+  border: 1px solid #ec475c;
+  padding: 5px;
+  margin-right: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
