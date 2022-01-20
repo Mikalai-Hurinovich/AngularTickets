@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { IMovie, MoviesService } from '../../core/services/movies.service';
 import { CinemaService } from '../../core/services/cinema.service';
-import { Subject, takeUntil } from 'rxjs';
+import { combineLatest, Observable, Subject, takeUntil } from 'rxjs';
 import { ICinema } from '../../pages/home/components/cinema/cinema.model';
 
 @Component({
@@ -15,13 +15,15 @@ import { ICinema } from '../../pages/home/components/cinema/cinema.model';
 export class HeaderComponent implements OnInit {
   private readonly destroy$: Subject<void> = new Subject();
 
-  movies: Array<IMovie>;
-
-  cinemas: Array<ICinema>;
-
   searchForm: FormGroup;
 
   searchControl: FormControl;
+
+  movies$: Observable<IMovie[]>;
+
+  cinemas$: Observable<ICinema[]>;
+
+  searchDatabase: [{ movies: IMovie[] }, { cinemas: ICinema[] }];
 
   constructor(
     private readonly router: Router,
@@ -36,23 +38,17 @@ export class HeaderComponent implements OnInit {
       searchControl: new FormControl(),
     });
 
-    this.moviesService.getMovies()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(data => {
-        this.movies = data;
-        this.cdr.markForCheck();
-      });
+    this.movies$ = this.moviesService.getMovies()
+      .pipe(takeUntil(this.destroy$));
 
-    this.cinemaService.getCinemas()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(data => {
-        this.cinemas = data;
+    this.cinemas$ = this.cinemaService.getCinemas()
+      .pipe(takeUntil(this.destroy$));
+
+    combineLatest([this.movies$, this.cinemas$])
+      .subscribe(([movies, cinemas]) => {
+        this.searchDatabase = [{ movies: [...movies] }, { cinemas: [...cinemas] }];
         this.cdr.markForCheck();
       });
-  }
-  
-  handleInputData(): [{ movies: IMovie[] }, { cinemas: ICinema[] }] {
-    return [{ movies: [...this.movies] }, { cinemas: [...this.cinemas] }];
   }
 
   ngOnDestroy() {
