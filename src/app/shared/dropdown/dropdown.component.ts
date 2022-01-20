@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } 
 import { IMovie } from '../../core/services/movies.service';
 import { ICinema } from '../../pages/home/components/cinema/cinema.model';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-dropdown',
@@ -13,9 +13,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class DropdownComponent implements OnInit {
   @Input() searchDatabase: [{ movies: IMovie[] }, { cinemas: ICinema[] }];
 
-  searchGroup: FormGroup;
-
-  searchControl: FormControl;
+  searchControl: FormControl = new FormControl();
 
   movies: Array<IMovie>;
 
@@ -29,30 +27,26 @@ export class DropdownComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.searchGroup = new FormGroup({
-      searchControl: new FormControl(),
-    });
-
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 
-    this.searchGroup.get('searchControl')?.valueChanges
+    this.searchControl.valueChanges
       .subscribe(currentValue => {
         let searchTerm = currentValue.toLocaleLowerCase().trim();
-        this.movies = this.searchDatabase[0].movies.filter((data: IMovie | ICinema) => data.title.toLocaleLowerCase().includes(searchTerm));
-        this.cinemas = this.searchDatabase[1].cinemas.filter((data: IMovie | ICinema) => data.title.toLocaleLowerCase().includes(searchTerm));
+        this.movies = this.searchDatabase[0].movies.filter((data: IMovie) => data.title.toLocaleLowerCase().includes(searchTerm));
+        this.cinemas = this.searchDatabase[1].cinemas.filter((data: ICinema) => data.title.toLocaleLowerCase().includes(searchTerm));
         this.cdr.markForCheck();
       });
   }
 
-  handleMovieClick(option: IMovie | ICinema) {
+  handleMovieClick(option: IMovie) {
     this.selectedItem = option;
     this.router.navigate([`movie/${option.id}`]);
-    this.searchGroup.controls['searchControl'].setValue('');
+    this.searchControl.setValue('');
   }
 
-  handleCinemaClick(option: IMovie | ICinema) {
+  handleCinemaClick(option: ICinema) {
     this.selectedItem = option;
     this.router.navigate([`cinema/${option.id}`]);
-    this.searchGroup.controls['searchControl'].setValue('');
+    this.searchControl.setValue('');
   }
 }

@@ -41,10 +41,10 @@ export class AdminComponent implements OnInit {
   }
 
   handleAddMovie(): void {
-    this.router.navigate(['admin', 'movie', 'new']);
+    this.router.navigate(['/admin', 'movie', 'new']);
   }
 
   handleAddCinema() {
-    this.router.navigate(['admin', 'cinema', 'new']);
+    this.router.navigate(['/admin', 'cinema', 'new']);
   }
 }

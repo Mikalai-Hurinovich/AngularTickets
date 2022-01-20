@@ -1,16 +1,14 @@
-<form [formGroup]="searchGroup" class="form" autocomplete="off">
-    <input formControlName="searchControl"
-           class="input"
-           placeholder="Search..."
-    />
-    <ul class="list" [ngClass]="searchGroup.controls['searchControl'].value ? 'visible' : 'hidden'">
-        <li *ngFor="let movie of movies"
-            (click)="handleMovieClick(movie)">
-            <span class="badge">{{movie.title}}</span>
-        </li>
-        <li *ngFor="let cinema of cinemas"
-            (click)="handleCinemaClick(cinema)">
-            <span class="badge">{{cinema.title}}</span>
-        </li>
-    </ul>
-</form>
+<input [formControl]="searchControl"
+       class="input"
+       placeholder="Search..."
+/>
+<ul class="list" [ngClass]="searchControl.value ? 'visible' : 'hidden'">
+    <li *ngFor="let movie of movies"
+        (click)="handleMovieClick(movie)">
+        <span class="badge">{{movie.title}}</span>
+    </li>
+    <li *ngFor="let cinema of cinemas"
+        (click)="handleCinemaClick(cinema)">
+        <span class="badge">{{cinema.title}}</span>
+    </li>
+</ul>
