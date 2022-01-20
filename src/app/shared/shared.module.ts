@@ -6,6 +6,8 @@ import { NavbarComponent } from './header/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AccordionModule } from './accordion/accordion.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DropdownComponent } from './dropdown/dropdown.component';
 
 
 @NgModule({
@@ -14,11 +16,13 @@ import { AccordionModule } from './accordion/accordion.module';
     HeaderComponent,
     FooterComponent,
     NavbarComponent,
+    DropdownComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     AccordionModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [],

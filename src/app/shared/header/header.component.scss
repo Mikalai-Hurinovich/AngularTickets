@@ -18,6 +18,11 @@
   color: rgba(200, 199, 198, 0.8);
 }
 
+.navigation {
+  display: flex;
+  flex-flow: row wrap;
+}
+
 .logo-right {
   color: rgb(212 7 84);
 }

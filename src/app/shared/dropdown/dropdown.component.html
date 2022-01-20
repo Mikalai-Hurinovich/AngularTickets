@@ -1,0 +1,17 @@
+<form [formGroup]="searchGroup" class="form" autocomplete="off">
+    <input formControlName="searchControl"
+           [(ngModel)]='currentSearch'
+           (keyup)="handleOnInputChange($event)"
+           class="input"
+           placeholder="Search..."/>
+    <ul class="list" [ngClass]="currentSearch.length ? 'visible' : 'hidden'">
+        <li *ngFor="let movie of movies"
+            (click)="handleSelectClick(movie, 'movie')">
+            <span class="badge">{{movie.title}}</span>
+        </li>
+        <li *ngFor="let cinema of cinemas"
+            (click)="handleSelectClick(cinema, 'cinema')">
+            <span class="badge">{{cinema.title}}</span>
+        </li>
+    </ul>
+</form>
