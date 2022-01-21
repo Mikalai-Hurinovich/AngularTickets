@@ -45,6 +45,10 @@ export class HeaderComponent implements OnInit {
       });
     console.log(2);
     console.log('test3');
+    console.log('test4');
+    console.log('test4.1');
+
+
   }
 
   ngOnDestroy() {
