@@ -44,6 +44,7 @@ export class HeaderComponent implements OnInit {
         this.cdr.markForCheck();
       });
     console.log(2);
+    console.log('test3');
   }
 
   ngOnDestroy() {
