@@ -2,5 +2,8 @@
     <div class="logo" (click)="handleGoHome()">
         <span class="logo-left">Cinema</span><span class="logo-right">tics</span>
     </div>
-    <app-navbar></app-navbar>
+    <div class="navigation">
+        <app-dropdown [searchDatabase]="searchDatabase"></app-dropdown>
+        <app-navbar></app-navbar>
+    </div>
 </header>

@@ -1,7 +1,7 @@
 <nav class="nav">
-    <a *ngIf="authService.currentUser?.isAdmin" [routerLink]="['admin']" routerLinkActive="active">Admin</a>
+    <a *ngIf="authService.currentUser?.isAdmin" [routerLink]="['/admin']" routerLinkActive="active">Admin</a>
     <a [routerLink]="['']" routerLinkActive="active">General</a>
-    <a [routerLink]="['user/login']" *ngIf="!authService.isAuth()" routerLinkActive="active">Login</a>
-    <a [routerLink]="['user/profile']" *ngIf="authService.isAuth()"
+    <a [routerLink]="['/user/login']" *ngIf="!authService.isAuth()" routerLinkActive="active">Login</a>
+    <a [routerLink]="['/user/profile']" *ngIf="authService.isAuth()"
        routerLinkActive="active">Hello, {{authService.currentUser.userName}}</a>
 </nav>
