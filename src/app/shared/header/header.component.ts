@@ -36,6 +36,7 @@ export class HeaderComponent implements OnInit {
 
     this.cinemas$ = this.cinemaService.getCinemas()
       .pipe(takeUntil(this.destroy$));
+    console.log(3);
 
     combineLatest([this.movies$, this.cinemas$])
       .subscribe(([movies, cinemas]) => {
