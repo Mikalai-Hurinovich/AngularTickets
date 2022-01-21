@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
 
   cinemas$: Observable<ICinema[]>;
 
+
   searchDatabase: [{ movies: IMovie[] }, { cinemas: ICinema[] }];
 
   constructor(
@@ -29,6 +30,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(1);
     this.movies$ = this.moviesService.getMovies()
       .pipe(takeUntil(this.destroy$));
 
