@@ -23,9 +23,7 @@ export class AuthService {
   checkAuthStatus(): void {
     this.http.get('/api/currentIdentity')
       .pipe(tap(data => {
-        if (data instanceof Object) {
-          this.currentUser = data as IUser;
-        }
+        this.currentUser = data as IUser;
       })).subscribe();
   }
 
@@ -74,7 +72,6 @@ export class AuthService {
   }
 
   isAuth(): boolean {
-    console.log(this.currentUser);
     return !!this.currentUser;
   }
 }

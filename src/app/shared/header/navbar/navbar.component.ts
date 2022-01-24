@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
+
   constructor(
     public readonly authService: AuthService,
     private readonly cdr: ChangeDetectorRef,
@@ -21,8 +22,8 @@ export class NavbarComponent {
         this.authService.currentUser = null;
         this.toastr.success('You was successfully logout');
       },
-      error: (error) => {
-        this.toastr.error(error || 'Something went wrong...');
+      error: () => {
+        this.toastr.error('Something went wrong...');
       },
     });
   }

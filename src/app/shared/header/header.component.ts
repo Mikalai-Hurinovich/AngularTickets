@@ -1,10 +1,9 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IMovie, MoviesService } from '../../core/services/movies.service';
 import { CinemaService } from '../../core/services/cinema.service';
 import { combineLatest, Observable, Subject, takeUntil } from 'rxjs';
 import { ICinema } from '../../pages/home/components/cinema/cinema.model';
-import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -24,8 +23,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly moviesService: MoviesService,
     private readonly cinemaService: CinemaService,
-    private readonly cdr: ChangeDetectorRef,
-    private readonly auth: AuthService,
   ) {
   }
 
