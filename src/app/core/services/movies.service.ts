@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { EMPTY, Observable, of } from 'rxjs';
-import { MOVIES_DATA } from '../../../assets/data/movies';
-import { getEntityById } from '../../helpers/getEntityById';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 
 export interface IMovie {
@@ -15,20 +13,18 @@ export interface IMovie {
 
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
+  constructor(private readonly http: HttpClient) {
+  }
+
   getMovies(): Observable<Array<IMovie>> {
-    return of(MOVIES_DATA);
+    return this.http.get('/api/movies') as Observable<Array<IMovie>>;
   }
 
   getMovie(movieId: number): Observable<IMovie> {
-    return getEntityById(this.getMovies, movieId);
+    return this.http.get(`/api/movies/${movieId}`) as Observable<IMovie>;
   }
 
-  addMovie(movie: IMovie): Observable<Observable<never>> {
-    return this.getMovies()
-      .pipe(map((movies) => {
-        movies.push(movie);
-        return EMPTY;
-      },
-      ));
+  createMovie(movie: IMovie): Observable<IMovie> {
+    return this.http.post('/api/movies/new', { ...movie }) as Observable<IMovie>;
   }
 }

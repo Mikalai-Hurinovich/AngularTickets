@@ -1,26 +1,23 @@
 import { Injectable } from '@angular/core';
-import { EMPTY, Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { ICinema } from '../../pages/home/components/cinema/cinema.model';
-import { CINEMAS_DATA } from '../../../assets/data/cinemas';
-import { map } from 'rxjs/operators';
-import { getEntityById } from '../../helpers/getEntityById';
 
 @Injectable({ providedIn: 'root' })
 export class CinemaService {
 
+  constructor(private readonly http: HttpClient) {
+  }
+
   getCinemas(): Observable<ICinema[]> {
-    return of(CINEMAS_DATA);
+    return this.http.get('/api/cinemas') as Observable<ICinema[]>;
   }
 
   getCinema(cinemaId: number): Observable<ICinema> {
-    return getEntityById(this.getCinemas, cinemaId);
+    return this.http.get(`/api/cinemas/${cinemaId}`) as Observable<ICinema>;
   }
 
-  addCinema(cinema: ICinema): Observable<Observable<never>> {
-    return this.getCinemas()
-      .pipe(map((cinemas: ICinema[]) => {
-        cinemas.push(cinema);
-        return EMPTY;
-      }));
+  createCinema(cinema: ICinema): Observable<ICinema> {
+    return this.http.post('/api/cinemas/new', { ...cinema }) as Observable<ICinema>;
   }
 }

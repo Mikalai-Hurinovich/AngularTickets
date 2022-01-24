@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import { IUser } from '../../pages/user/user.model';
-import { catchError, EMPTY, Observable, of, tap } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
@@ -28,16 +28,14 @@ export class AuthService {
   }
 
   private getUsers(): Observable<IUser[]> {
-    const options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.get('/api/users', options)
+    return this.http.get('/api/users')
       .pipe(map(res => res as IUser[]));
   }
 
   loginUser(name: string, pass: string): Observable<IUser> {
     const loginInfo = { username: name, password: pass };
-    const options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     // @ts-ignore
-    return this.http.post('/api/login', loginInfo, options)
+    return this.http.post('/api/login', loginInfo)
       .pipe(tap(data => {
         // @ts-ignore
         this.currentUser = data.user as IUser;
@@ -48,27 +46,16 @@ export class AuthService {
       }));
   }
 
-  logoutUser(): Observable<object> {
-    const options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.post('/api/logout', {}, options);
+  logoutUser(): Observable<never> {
+    return this.http.post('/api/logout', {}) as Observable<never>;
   }
 
-  createUser(user: IUser): Observable<Observable<never>> {
-    return this.getUsers()
-      .pipe(map((users) => {
-        users.push(user);
-        return EMPTY;
-      },
-      ));
+  createUser(user: IUser): Observable<IUser> {
+    return this.http.post('/api/users/new', { ...user }) as Observable<IUser>;
   }
 
-  createAdmin(user: IUser): Observable<Observable<never>> {
-    return this.getUsers()
-      .pipe(map((users) => {
-        users.push({ ...user, isAdmin: true });
-        return EMPTY;
-      },
-      ));
+  createAdmin(user: IUser): Observable<IUser> {
+    return this.http.post('/api/users', { ...user, isAdmin: true }) as Observable<IUser>;
   }
 
   isAuth(): boolean {

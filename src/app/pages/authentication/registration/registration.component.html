@@ -1,5 +1,5 @@
 <h2 class="title">Registration</h2>
-<form class="form" [formGroup]="registrationForm" (ngSubmit)="handleRegisterUser()" autocomplete="off">
+<form class="form" [formGroup]="registrationForm" autocomplete="off">
     <div class="form-group"
          [class.error]="handleValidateLogin()">
         <label for="userName">User Name:</label>
@@ -47,8 +47,8 @@
     </div>
     <div class="buttons">
         <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false">
-            <app-button type="submit" [disabled]="registrationForm.invalid"
-                        (click)="handleRegisterUser()">Register</app-button>
+            <app-button (click)="handleRegisterUser()"
+                        [disabled]="registrationForm.invalid">Register</app-button>
         </span>
         <app-button (click)="handleCancelButtonClick()">Cancel</app-button>
     </div>

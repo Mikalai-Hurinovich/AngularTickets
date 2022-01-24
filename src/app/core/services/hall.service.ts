@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { ALL_CINEMAS_HALLS } from '../../../assets/data/halls';
+import { Observable } from 'rxjs';
 import { IHall } from '../../models/hall';
-import { getEntityById } from '../../helpers/getEntityById';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class HallService {
+  constructor(private readonly http: HttpClient) {
+  }
+
   getHalls(): Observable<Array<IHall>> {
-    return of(ALL_CINEMAS_HALLS);
+    return this.http.get('/api/halls') as Observable<Array<IHall>>;
   }
 
   getHallById(cinemaId: number): Observable<IHall> {
-    return getEntityById(this.getHalls, cinemaId);
+    return this.http.get(`/api/halls/${cinemaId}`) as Observable<IHall>;
   }
 }

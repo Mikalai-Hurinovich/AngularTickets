@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { SESSIONS_DATA } from '../../../assets/data/sessions';
+import { Observable } from 'rxjs';
 import { ISession } from '../../models/sessions';
-import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class SessionService {
+  constructor(private readonly http: HttpClient) {
+  }
+
   getSessions(): Observable<Array<ISession>> {
-    return of(SESSIONS_DATA);
+    return this.http.get('/api/sessions') as Observable<Array<ISession>>;
   }
 
   getSessionsById(id: number, key: string): Observable<ISession[]> {
-    return this.getSessions()
-    // @ts-ignore
-      .pipe(map((sessions: Array<ISession>) => sessions.filter((session) => session[key].id === id)) as ISession,
-      );
+    return this.http.get(`/api/sessions/${key}/${id}`) as Observable<ISession[]>;
   }
 }

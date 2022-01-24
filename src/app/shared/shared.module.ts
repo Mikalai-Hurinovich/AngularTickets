@@ -8,6 +8,8 @@ import { RouterModule } from '@angular/router';
 import { AccordionModule } from './accordion/accordion.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DropdownComponent } from './dropdown/dropdown.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
@@ -17,12 +19,14 @@ import { DropdownComponent } from './dropdown/dropdown.component';
     FooterComponent,
     NavbarComponent,
     DropdownComponent,
+    SpinnerComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     AccordionModule,
     ReactiveFormsModule,
+    NgxSpinnerModule,
   ],
   providers: [],
   bootstrap: [],
@@ -30,6 +34,7 @@ import { DropdownComponent } from './dropdown/dropdown.component';
     ButtonComponent,
     HeaderComponent,
     FooterComponent,
+    SpinnerComponent,
   ],
 })
 export class SharedModule {
