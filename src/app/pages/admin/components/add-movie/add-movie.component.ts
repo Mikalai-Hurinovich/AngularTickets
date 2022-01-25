@@ -53,7 +53,7 @@ export class AddMovieComponent implements OnInit, OnDestroy {
       description: formValue.description,
     };
 
-    this.subscription = this.movieService.addMovie(data).subscribe({
+    this.subscription = this.movieService.createMovie(data).subscribe({
       next: () => {
         this.toastr.success('Movie was successfully added');
         this.router.navigate(['/admin']);

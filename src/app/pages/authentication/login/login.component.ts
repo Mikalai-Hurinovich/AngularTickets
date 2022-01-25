@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   mouseoverLogin: boolean;
 
+  loginInvalid = false;
+
   private userName: FormControl;
 
   private userPassword: FormControl;
@@ -48,16 +50,17 @@ export class LoginComponent implements OnInit, OnDestroy {
       let userName = this.userName.value;
       let password = this.userPassword.value;
 
-      this.subscription = this.userService.loginUser(userName, password).subscribe({
-        next: (user) => {
-          this.router.navigate(['']);
-          this.toastr.success(`You have successfully logged in as ${user.userName}`);
-        },
-        error: (error) => {
-          this.toastr.error(error);
+      this.subscription = this.userService.loginUser(userName, password).subscribe(res => {
+        if (!res) {
+          this.loginInvalid = true;
+          this.toastr.error('Username or password is incorrect');
           this.cdr.markForCheck();
-        },
-      });
+        } else {
+          this.router.navigate(['']);
+          this.toastr.success(`You have successfully logged in as ${this.userName.value}`);
+        }
+      },
+      );
     }
   }
 

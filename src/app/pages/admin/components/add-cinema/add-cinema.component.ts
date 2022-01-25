@@ -55,7 +55,7 @@ export class AddCinemaComponent implements OnInit, OnDestroy {
       halls: 1,
     };
 
-    this.subscription = this.cinemaService.addCinema(data).subscribe({
+    this.subscription = this.cinemaService.createCinema(data).subscribe({
       next: () => {
         this.toastr.success('Cinema was successfully added');
         this.router.navigate(['/admin']);

@@ -1,57 +1,61 @@
 import { Injectable } from '@angular/core';
 
 import { IUser } from '../../pages/user/user.model';
-import { EMPTY, Observable, of, tap } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Users } from '../../../assets/data/users';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
-  private _currentUser: IUser;
+  private _currentUser: IUser | null;
 
   get currentUser() {
     return this._currentUser;
   }
 
-  set currentUser(user: IUser) {
+  set currentUser(user: IUser | null) {
     this._currentUser = user;
   }
 
-  private getUsers(): Observable<Array<IUser>> {
-    return of(Users);
+  constructor(private readonly http: HttpClient) {
+  }
+
+  checkAuthStatus(): void {
+    this.http.get('/api/currentIdentity')
+      .pipe(tap(data => {
+        this.currentUser = data as IUser;
+      })).subscribe();
+  }
+
+  private getUsers(): Observable<IUser[]> {
+    return this.http.get('/api/users')
+      .pipe(map(res => res as IUser[]));
   }
 
   loginUser(name: string, pass: string): Observable<IUser> {
-    return this.getUsers()
-      .pipe(map((users: Array<IUser>) => users.find(({
-        userName, userPassword,
-      }) => userName === name && userPassword === pass) as IUser),
-      tap(user => {
-        if (user) {
-          this.currentUser = user;
-        } else {
-          throw new Error('The username or password is incorrect');
-        }
-      }),
-      );
+    const loginInfo = { username: name, password: pass };
+    // @ts-ignore
+    return this.http.post('/api/login', loginInfo)
+      .pipe(tap(data => {
+        // @ts-ignore
+        this.currentUser = data.user as IUser;
+      }))
+    // @ts-ignore
+      .pipe(catchError(() => {
+        return of(false);
+      }));
   }
 
-  createUser(user: IUser): Observable<Observable<never>> {
-    return this.getUsers()
-      .pipe(map((users) => {
-        users.push(user);
-        return EMPTY;
-      },
-      ));
+  logoutUser(): Observable<never> {
+    return this.http.post('/api/logout', {}) as Observable<never>;
   }
 
-  createAdmin(user: IUser): Observable<Observable<never>> {
-    return this.getUsers()
-      .pipe(map((users) => {
-        users.push({ ...user, isAdmin: true });
-        return EMPTY;
-      },
-      ));
+  createUser(user: IUser): Observable<IUser> {
+    return this.http.post('/api/users/new', { ...user }) as Observable<IUser>;
+  }
+
+  createAdmin(user: IUser): Observable<IUser> {
+    return this.http.post('/api/users', { ...user, isAdmin: true }) as Observable<IUser>;
   }
 
   isAuth(): boolean {

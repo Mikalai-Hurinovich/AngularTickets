@@ -1,5 +1,5 @@
 <h2 class="title">Add Cinema</h2>
-<form class="form" [formGroup]="cinemaForm" (ngSubmit)="handleAddCinema()">
+<form class="form" [formGroup]="cinemaForm">
     <div class="form-group"
          [class.error]="handleValidateFormControl(cinemaForm.controls['title'])">
         <label for="title">Title:</label>

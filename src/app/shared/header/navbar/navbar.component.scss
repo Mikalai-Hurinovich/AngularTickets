@@ -1,5 +1,10 @@
 @import 'src/app/core/utils/utils';
 
+.nav {
+  display: flex;
+  align-items: center;
+}
+
 .nav a {
   @include button-styles;
 }

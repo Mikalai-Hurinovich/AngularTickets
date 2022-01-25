@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IMovie, MoviesService } from '../../core/services/movies.service';
 import { CinemaService } from '../../core/services/cinema.service';
@@ -11,7 +11,7 @@ import { ICinema } from '../../pages/home/components/cinema/cinema.model';
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   private readonly destroy$: Subject<void> = new Subject();
 
   movies$: Observable<IMovie[]>;
@@ -40,6 +40,7 @@ export class HeaderComponent implements OnInit {
         this.searchDatabase = [{ movies: [...movies] }, { cinemas: [...cinemas] }];
         this.cdr.markForCheck();
       });
+
   }
 
   ngOnDestroy() {
