@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MovieDetailsComponent } from './pages/home/components/movie-details/movie-details.component';
-import { AdminGuard } from './core/guards/admin.guard';
 import { CinemaDetailsComponent } from './pages/home/components/cinema-details/cinema-details.component';
+import { TokenGuard } from './core/guards/token.guard';
 
 
 const routes: Routes = [
@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./pages/admin/admin.module').then(module => module.AdminModule),
-    canActivate: [AdminGuard],
+    canActivate: [TokenGuard],
   },
   {
     path: 'user', loadChildren: () => import('./pages/authentication/authentication.module')

@@ -23,6 +23,7 @@ import { AccordionModule } from './shared/accordion/accordion.module';
 import { ApiInterceptor } from './core/interceptors/api.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SpinnerInterceptor } from './core/interceptors/spinner.interceptor';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 
 
 @NgModule({
@@ -51,16 +52,22 @@ import { SpinnerInterceptor } from './core/interceptors/spinner.interceptor';
     BrowserAnimationsModule,
     NoopAnimationsModule,
   ],
-  providers: [AuthService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: ApiInterceptor,
-    multi: true,
-  },
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: SpinnerInterceptor,
-    multi: true,
-  }],
+  providers: [AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerInterceptor,
+      multi: true,
+    }],
   bootstrap: [AppComponent],
 })
 export class AppModule {

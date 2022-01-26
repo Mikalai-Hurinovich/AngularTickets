@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -12,14 +13,16 @@ export class NavbarComponent {
   constructor(
     public readonly authService: AuthService,
     private readonly cdr: ChangeDetectorRef,
-    private readonly auth: AuthService,
+    private readonly router: Router,
     private readonly toastr: ToastrService) {
   }
 
   handleLogout() {
     this.authService.logoutUser().subscribe({
       next: () => {
-        this.authService.currentUser = null;
+        localStorage.removeItem('token');
+        this.authService.isLoggedIn = false;
+        this.router.navigate(['']);
         this.toastr.success('You was successfully logout');
       },
       error: () => {
