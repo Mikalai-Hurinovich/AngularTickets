@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
 
@@ -24,6 +25,7 @@ export class NavbarComponent {
         this.authService.isLoggedIn = false;
         this.router.navigate(['']);
         this.toastr.success('You was successfully logout');
+        this.cdr.markForCheck();
       },
       error: () => {
         this.toastr.error('Something went wrong...');

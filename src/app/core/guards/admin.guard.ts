@@ -18,9 +18,6 @@ export class AdminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    // if (this.authService.handleCheckAdmin()) {
-    //   return true;
-    // }
     return this.authService.handleCheckAdmin()
       .pipe(map(isAdmin => {
         if (isAdmin) {
