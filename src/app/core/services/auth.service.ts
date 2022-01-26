@@ -56,12 +56,16 @@ export class AuthService {
   }
 
   isTokenActive(): boolean {
-    this.http.post('/api/token', { token: this.token })
+    this.http.get('/api/token')
       .subscribe((res) => {
         // @ts-ignore
-        this.isLoggedIn = res.isActive;
+        this.isLoggedIn = res;
       });
     return this.isLoggedIn;
+  }
+
+  handleCheckAdmin(): Observable<unknown> {
+    return this.http.get('/api/admin');
   }
 
   private getUsers(): Observable<IUser[]> {
