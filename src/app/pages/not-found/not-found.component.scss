@@ -3,6 +3,7 @@
   top: 50%;
   transform: translateY(-50%);
   text-align: center;
+  color: hsla(0, 0%, 100%, .8);
 }
 
 
@@ -32,6 +33,7 @@
   user-select: none;
   margin-right: 10px;
   box-shadow: 0 0 1rem #fefefe;;
+  color: hsla(0, 0%, 100%, .8);
 
   &:hover {
     background: rgb(212, 7, 84);

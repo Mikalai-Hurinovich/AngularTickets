@@ -40,7 +40,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.searchDatabase = [{ movies: [...movies] }, { cinemas: [...cinemas] }];
         this.cdr.markForCheck();
       });
-
   }
 
   ngOnDestroy() {
