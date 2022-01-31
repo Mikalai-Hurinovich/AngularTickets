@@ -9,10 +9,10 @@ export class SessionService {
   }
 
   getSessions(): Observable<Array<ISession>> {
-    return this.http.get('/api/sessions') as Observable<Array<ISession>>;
+    return this.http.get<ISession[]>('/api/sessions') as Observable<Array<ISession>>;
   }
 
   getSessionsByCinemaId(id: number, key: string): Observable<ISession[]> {
-    return this.http.get(`/api/sessions/${key}/${id}`) as Observable<ISession[]>;
+    return this.http.get<ISession[]>(`/api/sessions/${key}/${id}`) as Observable<ISession[]>;
   }
 }
