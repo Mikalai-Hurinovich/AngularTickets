@@ -3,7 +3,7 @@ import { IMovie, MoviesService } from '../core/services/movies.service';
 import { TestBed } from '@angular/core/testing';
 import { MOVIES_DATA } from '../../assets/data/movies';
 
-describe('movieService', () => {
+describe('MovieService', () => {
   let mockHttp: HttpTestingController;
   let moviesService: jasmine.SpyObj<MoviesService>;
   let movies: IMovie[];

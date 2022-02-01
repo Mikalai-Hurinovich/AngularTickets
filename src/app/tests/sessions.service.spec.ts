@@ -5,7 +5,7 @@ import { ISession } from '../models/sessions';
 import { SESSIONS_DATA } from '../../assets/data/sessions';
 
 
-describe('sessionService', () => {
+describe('SessionService', () => {
   let mockHttp: HttpTestingController;
   let sessionService: jasmine.SpyObj<SessionService>;
   let sessions: ISession[];

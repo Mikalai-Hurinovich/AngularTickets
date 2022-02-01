@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MovieComponent } from '../pages/home/components/movie/movie.component';
+import { ButtonComponent } from '../shared/button/button.component';
 
 describe('MovieComponent', () => {
   let component: MovieComponent;
@@ -7,7 +8,7 @@ describe('MovieComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MovieComponent],
+      declarations: [MovieComponent, ButtonComponent],
     });
 
     fixture = TestBed.createComponent(MovieComponent);

@@ -74,7 +74,7 @@ export class AuthService {
   }
 
   loginUser(name: string, pass: string): Observable<IUser> {
-    const loginInfo = { username: name, password: pass };
+    const loginInfo = { userName: name, userPassword: pass };
     // @ts-ignore
     return this.http.post('/api/login', loginInfo)
       .pipe(tap((data) => {

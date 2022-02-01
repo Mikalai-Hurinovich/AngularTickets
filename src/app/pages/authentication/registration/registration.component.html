@@ -19,7 +19,7 @@
                placeholder="Email..." required
                type="email">
     </div>
-    <div formGroupName="passwords">
+    <div class="passwords" formGroupName="passwords">
         <div class="form-group"
              [class.error]="handleValidatePassword()">
             <label for="userPassword">Password:</label>
@@ -36,7 +36,7 @@
             <label for="confirmPassword">Repeat password:</label>
             <em *ngIf="handleValidateConfirmPassword()">Field
                 Required</em>
-            <em *ngIf="handleValidatePasswordsMismatch()">Mismatch</em>
+            <em class="mismatch-error" *ngIf="handleValidatePasswordsMismatch()">Mismatch</em>
             <input class="form-control" id="confirmPassword" formControlName="confirmPassword"
                    placeholder="Repeat you password..." required
                    type="password">
@@ -50,6 +50,6 @@
             <app-button (click)="handleRegisterUser()"
                         [disabled]="registrationForm.invalid">Register</app-button>
         </span>
-        <app-button (click)="handleCancelButtonClick()">Cancel</app-button>
+        <app-button class="cancelButton" (click)="handleCancelButtonClick()">Cancel</app-button>
     </div>
 </form>
