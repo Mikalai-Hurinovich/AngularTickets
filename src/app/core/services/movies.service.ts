@@ -17,14 +17,14 @@ export class MoviesService {
   }
 
   getMovies(): Observable<Array<IMovie>> {
-    return this.http.get('/api/movies') as Observable<Array<IMovie>>;
+    return this.http.get<IMovie[]>('/api/movies') as Observable<Array<IMovie>>;
   }
 
   getMovie(movieId: number): Observable<IMovie> {
-    return this.http.get(`/api/movies/${movieId}`) as Observable<IMovie>;
+    return this.http.get<IMovie>(`/api/movies/${movieId}`) as Observable<IMovie>;
   }
 
   createMovie(movie: IMovie): Observable<IMovie> {
-    return this.http.post('/api/movies/new', { ...movie }) as Observable<IMovie>;
+    return this.http.post<IMovie>('/api/movies/new', { ...movie }) as Observable<IMovie>;
   }
 }

@@ -10,14 +10,14 @@ export class CinemaService {
   }
 
   getCinemas(): Observable<ICinema[]> {
-    return this.http.get('/api/cinemas') as Observable<ICinema[]>;
+    return this.http.get<ICinema[]>('/api/cinemas') as Observable<ICinema[]>;
   }
 
   getCinema(cinemaId: number): Observable<ICinema> {
-    return this.http.get(`/api/cinemas/${cinemaId}`) as Observable<ICinema>;
+    return this.http.get<ICinema>(`/api/cinemas/${cinemaId}`) as Observable<ICinema>;
   }
 
   createCinema(cinema: ICinema): Observable<ICinema> {
-    return this.http.post('/api/cinemas/new', { ...cinema }) as Observable<ICinema>;
+    return this.http.post<ICinema>('/api/cinemas/new', { ...cinema }) as Observable<ICinema>;
   }
 }

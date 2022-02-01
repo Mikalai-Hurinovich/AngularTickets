@@ -1,3 +1,5 @@
+@import 'src/app/core/utils/utils';
+
 .left-section .inner-content {
   position: absolute;
   top: 50%;
@@ -18,27 +20,8 @@
 }
 
 .home-button {
-  border-radius: 22px;
-  padding: 9px 30px;
   margin-top: 20px;
-  background: rgba(255, 255, 255, 0);
-  font-size: 1em;
-  text-overflow: ellipsis;
-  text-align: center;
-  text-decoration: none;
-  overflow: hidden;
-  white-space: nowrap;
-  transition: all 0.2s ease 0s;
-  cursor: pointer;
-  user-select: none;
-  margin-right: 10px;
-  box-shadow: 0 0 1rem #fefefe;;
-  color: hsla(0, 0%, 100%, .8);
-
-  &:hover {
-    background: rgb(212, 7, 84);
-    color: #fff;
-  }
+  @include button-styles;
 }
 
 
@@ -52,7 +35,7 @@
 
 @media (max-width: 770px) {
   .background .ground {
-    height: 0vh;
+    height: 0;
   }
 }
 
@@ -70,7 +53,7 @@
 @media (max-width: 770px) {
   .container {
     flex-direction: column;
-    padding-bottom: 0vh;
+    padding-bottom: 0;
   }
 }
 

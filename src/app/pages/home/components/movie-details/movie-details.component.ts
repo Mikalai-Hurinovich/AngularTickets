@@ -40,7 +40,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
         },
       );
 
-    this.sessionService.getSessionsById(+this.route.snapshot.params['id'], 'movie')
+    this.sessionService.getSessionsByCinemaId(+this.route.snapshot.params['id'], 'movie')
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
         this.groupCinemaSessionsByDate = groupCinemaSessionsByDate(data);
